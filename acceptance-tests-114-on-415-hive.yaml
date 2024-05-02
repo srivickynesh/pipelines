@@ -1,0 +1,63 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: acceptance-tests-114-on-415-hive-
+spec:
+  pipelineRef:
+    name: acceptance-tests
+  params:
+    - name: ARCH
+      value: "linux/amd64"
+    - name: CATALOG_SOURCE
+      value: custom-operators
+    - name: CLUSTER_POOL
+      value: "openstack"
+    - name: CLUSTER_NAME
+      value: resource-hub
+    - name: CLI_TESTS_TYPE
+      value: downstream
+    - name: INDEX
+      value: "717598"
+    - name: INSTALLER
+      value: "hive"
+    - name: INSTALL_PIPELINES_OPERATOR
+      value: "false"
+    - name: INSTALL_SERVERLESS_OPERATOR
+      value: "true"
+    - name: OPERATOR_ENVIRONMENT
+      value: pre-stage
+    - name: OPERATOR_VERSION
+      value: "1.14.4"
+    - name: TEST_SUITES
+      value:
+      # - cli-tests-fedora
+      # - release-tests-chains
+      # - release-tests-metrics
+      # - release-tests-clustertasks
+      # - release-tests-clustertasks-s2i
+      # - release-tests-clustertasks-multiarch
+      # - release-tests-pipelines
+      # - release-tests-results
+      # - release-tests-triggers
+      # - release-tests-triggers-tls
+      - tutorial-tests
+      # - operator-upstream-tests
+      # - pipelines-upstream-tests
+      # - triggers-upstream-tests
+      # - release-tests-rbac
+      # - release-tests-auto-prune
+      # - release-tests-addon
+    - name: TKN_DOWNLOAD_URL
+      value: https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.13.0/tkn-linux-amd64.tar.gz
+  timeouts:
+    pipeline: 3h
+  workspaces:
+    - name: git
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 200Mi
+          storageClassName: csi-manila-ceph
