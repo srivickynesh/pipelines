@@ -9,23 +9,23 @@ spec:
     - name: ARCH
       value: "linux/amd64"
     - name: CATALOG_SOURCE
-      value: custom-operators
-    - name: CLUSTER_POOL
+      value: custom-operators   ===>  redhat-operators
+    - name: CLUSTER_POOL        =====> only for hive
       value: "openstack"
     - name: CLUSTER_NAME
-      value: resource-hub
+      value: resource-hub       =====>   change it to cluster name
     - name: CLI_TESTS_TYPE
       value: downstream
     - name: INDEX
-      value: "717598"
+      value: "717598"           ======>   change it to correct INDEX
     - name: INSTALLER
-      value: "hive"
+      value: "hive"                         ==========>  Change the installer name
     - name: INSTALL_PIPELINES_OPERATOR
-      value: "false"
+      value: "true"
     - name: INSTALL_SERVERLESS_OPERATOR
       value: "true"
     - name: OPERATOR_ENVIRONMENT
-      value: pre-stage
+      value: pre-stage                 =======> prod
     - name: OPERATOR_VERSION
       value: "1.14.4"
     - name: TEST_SUITES
