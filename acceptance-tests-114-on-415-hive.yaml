@@ -1,5 +1,6 @@
 # Get the latest build version from here: curl -sSL "https://datagrepper.engineering.redhat.com/raw?topic=/topic/VirtualTopic.eng.ci.redhat-container-image.index.built&delta=400800&contains=pipelines" | jq ".raw_messages[].msg.index"
 # Check in all 3 openshift version 1 severe testing and other 2 sanity testing
+# https://artifacts.ospqa.com/builds/1.15.0/734617-4.16/ to install operators manually
 
 apiVersion: tekton.dev/v1
 kind: PipelineRun
@@ -34,22 +35,22 @@ spec:
     - name: TEST_SUITES
       value:
       # - cli-tests-fedora
-      # - release-tests-chains
-      # - release-tests-metrics
-      # - release-tests-clustertasks
-      # - release-tests-clustertasks-s2i
-      # - release-tests-clustertasks-multiarch
-      # - release-tests-pipelines
-      # - release-tests-results
-      # - release-tests-triggers
-      # - release-tests-triggers-tls
-      - tutorial-tests
+      - release-tests-versions
+      - release-tests-chains
+      - release-tests-metrics
+      - release-tests-clustertasks
+      - release-tests-clustertasks-s2i
+      - release-tests-clustertasks-multiarch
+      - release-tests-pipelines
+      - release-tests-results
+      - release-tests-triggers
+      - release-tests-triggers-tls
       # - operator-upstream-tests
       # - pipelines-upstream-tests
       # - triggers-upstream-tests
-      # - release-tests-rbac
-      # - release-tests-auto-prune
-      # - release-tests-addon
+      - release-tests-rbac
+      - release-tests-auto-prune
+      - release-tests-addon
     - name: TKN_DOWNLOAD_URL
       value: https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.13.0/tkn-linux-amd64.tar.gz
   timeouts:
