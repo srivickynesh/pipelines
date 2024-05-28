@@ -1,3 +1,6 @@
+# Get the latest build version from here: curl -sSL "https://datagrepper.engineering.redhat.com/raw?topic=/topic/VirtualTopic.eng.ci.redhat-container-image.index.built&delta=400800&contains=pipelines" | jq ".raw_messages[].msg.index"
+# Check in all 3 openshift version 1 severe testing and other 2 sanity testing
+
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
@@ -8,15 +11,15 @@ spec:
   params:
     - name: ARCH
       value: "linux/amd64"
-    - name: CATALOG_SOURCE
-      value: custom-operators   ===>  redhat-operators
+    - name: CATALOG_SOURCE      ====> custom-operators: when installing unpublished release (theoretically can be anything)
+      value: custom-operators   ===>  redhat-operators  
     - name: CLUSTER_POOL        =====> only for hive
       value: "openstack"
     - name: CLUSTER_NAME
       value: resource-hub       =====>   change it to cluster name
     - name: CLI_TESTS_TYPE
       value: downstream
-    - name: INDEX
+    - name: INDEX               =======> https://quay.io/repository/openshift-pipeline/redhat-operator-index?tab=tags
       value: "717598"           ======>   change it to correct INDEX
     - name: INSTALLER
       value: "hive"                         ==========>  Change the installer name
@@ -25,9 +28,9 @@ spec:
     - name: INSTALL_SERVERLESS_OPERATOR
       value: "true"
     - name: OPERATOR_ENVIRONMENT
-      value: pre-stage                 =======> prod
+      value: pre-stage         -====>  stage       =======> prod
     - name: OPERATOR_VERSION
-      value: "1.14.4"
+      value: "1.14.4"          ========> https://quay.io/repository/openshift-pipeline/redhat-operator-index?tab=tags
     - name: TEST_SUITES
       value:
       # - cli-tests-fedora
