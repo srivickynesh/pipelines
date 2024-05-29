@@ -20,16 +20,26 @@ spec:
       value: resource-hub       =====>   change it to cluster name
     - name: CLI_TESTS_TYPE
       value: downstream
+    - name: IMAGE
+      value: quay.io/openshift-pipeline/ci
     - name: INDEX               =======> https://quay.io/repository/openshift-pipeline/redhat-operator-index?tab=tags
       value: "717598"           ======>   change it to correct INDEX
     - name: INSTALLER
-      value: "hive"                         ==========>  Change the installer name
+      value: "hive"             ==========>  Change the installer name
+    - name: KEEP_CLUSTER
+      value: 'true'
     - name: INSTALL_PIPELINES_OPERATOR
       value: "true"
     - name: INSTALL_SERVERLESS_OPERATOR
       value: "true"
+    - name: OPENSHIFT_VERSION
+      value: '4.14'
     - name: OPERATOR_ENVIRONMENT
       value: pre-stage         -====>  stage       =======> prod
+    - name: TAGS
+      value: sanity
+    - name: SEND_SLACK_NOTIFICATION
+      value: 'true'
     - name: OPERATOR_VERSION
       value: "1.14.4"          ========> https://quay.io/repository/openshift-pipeline/redhat-operator-index?tab=tags
     - name: TEST_SUITES
